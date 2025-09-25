@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Satia BTC Metrics — WordPress Plugin</title>
+  <meta name="description" content="Lightweight WordPress plugin to display Bitcoin metrics as text-only shortcodes. Price, NAV, gains, yields, and volatility." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+
+  <link rel="canonical" href="https://massatianagara.github.io/btc-metrics/"/>
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
+  <meta name="theme-color" content="#0b0b0c"/>
+  <meta name="keywords" content="WordPress plugin, Bitcoin, BTC price, BTC yield, BTC volatility, CoinGecko, Deribit, crypto shortcode, text-only shortcodes"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Satia BTC Metrics"/>
+  <meta property="og:title" content="Satia BTC Metrics — WordPress Plugin"/>
+  <meta property="og:description" content="Text-only shortcodes for Bitcoin price, NAV, gains, yield (YTD/QTD/Annual/Locked), and volatility (HV/IV). Style with your own theme."/>
+  <meta property="og:url" content="https://massatianagara.github.io/btc-metrics/"/>
+  <meta property="og:image" content="assets/img/screenshot-1.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Satia BTC Metrics — WordPress Plugin"/>
+  <meta name="twitter:description" content="BTC metrics via text-only shortcodes. Price, NAV, gains, yield & volatility."/>
+  <meta name="twitter:image" content="assets/img/screenshot-1.png"/>
+
+  <!-- JSON-LD: SoftwareApplication + WebSite + WebPage + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://massatianagara.github.io/btc-metrics/#website",
+        "url": "https://massatianagara.github.io/btc-metrics/",
+        "name": "Satia BTC Metrics",
+        "publisher": { "@type": "Person", "name": "Satia" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://massatianagara.github.io/btc-metrics/#webpage",
+        "url": "https://massatianagara.github.io/btc-metrics/",
+        "name": "Satia BTC Metrics — WordPress Plugin",
+        "isPartOf": { "@id": "https://massatianagara.github.io/btc-metrics/#website" },
+        "description": "Lightweight WordPress plugin with text-only shortcodes for Bitcoin metrics.",
+        "inLanguage": "en",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://massatianagara.github.io/btc-metrics/"},
+            {"@type":"ListItem","position":2,"name":"Screenshots","item":"https://massatianagara.github.io/btc-metrics/#gallery"}
+          ]
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Satia BTC Metrics",
+        "applicationCategory": "WordPressPlugin",
+        "operatingSystem": "WordPress",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "softwareVersion": "1.0.0",
+        "downloadUrl": "https://github.com/massatianagara/satia-btc-metrics",
+        "screenshot": [
+          "https://massatianagara.github.io/btc-metrics/assets/img/screenshot-1.png",
+          "https://massatianagara.github.io/btc-metrics/assets/img/screenshot-2.png"
+        ],
+        "sourceOrganization": {"@type":"Person","name":"Satia"},
+        "url": "https://massatianagara.github.io/btc-metrics/",
+        "sameAs": ["https://github.com/massatianagara/satia-btc-metrics"],
+        "description": "Text-only shortcodes for BTC price, NAV, gains, yield (YTD/QTD/Annual/Locked) and volatility (HV/IV)."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type":"Question",
+            "name":"Does it work with any WordPress theme?",
+            "acceptedAnswer":{"@type":"Answer","text":"Yes. Output is text-only, so it adopts your theme or page builder styles."}
+          },
+          {
+            "@type":"Question",
+            "name":"What data sources are used?",
+            "acceptedAnswer":{"@type":"Answer","text":"Price from CoinGecko with Binance fallback. IV from Deribit; when IV is unavailable, a blended historical-volatility estimate is used."}
+          },
+          {
+            "@type":"Question",
+            "name":"Which yield types are supported?",
+            "acceptedAnswer":{"@type":"Answer","text":"YTD, QTD, Annual (Jan–Dec), Annual YTD (Jan–today), and Annual Locked (Dec 31 of chosen year–today)."}
+          },
+          {
+            "@type":"Question",
+            "name":"How do I install the plugin?",
+            "acceptedAnswer":{"@type":"Answer","text":"Download the ZIP from GitHub Releases, upload via Plugins → Add New → Upload Plugin, then activate."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com"/>
+  <link rel="prefetch" as="script" href="assets/js/releases.js"/>
+  <a class="skip-link" href="#features">Skip to content</a>
+
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Satia BTC Metrics">
+      <div class="logo">฿</div>
+      <span class="sr-only">Satia BTC Metrics</span>
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#gallery">Screenshots</a>
+      <a href="#shortcodes">Shortcodes</a>
+      <a href="#install">Instalasi</a>
+      <a href="#donate" class="btn ghost">Donate</a>
+      <a href="https://github.com/massatianagara/satia-btc-metrics" class="btn" target="_blank" rel="noopener">Download</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-wrap">
+      <h1>BTC metrics, your way.</h1>
+      <p class="lead">A lightweight WordPress plugin that outputs <strong>text‑only shortcodes</strong> for Bitcoin price, NAV, gains, yield (YTD/QTD/Annual/Locked), and volatility (HV/IV). Style everything with your own theme.</p>
+      <div class="cta">
+        <a class="btn xl" href="https://github.com/massatianagara/satia-btc-metrics" target="_blank" rel="noopener">Unduh Plugin</a>
+        <a class="btn xl ghost" href="https://sociabuzz.com/massatianagara/donate" target="_blank" rel="noopener">Dukung Pengembangan</a>
+      </div>
+      <div class="hero-meta">
+        <span>Open source</span>
+        <span>BTC‑only</span>
+        <span>No CSS lock‑in</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section">
+    <h2 class="section-title">Kenapa Satia BTC Metrics?</h2>
+    <div class="grid features">
+      <div class="card">
+        <h3>Ringkas &amp; fleksibel</h3>
+        <p>Simple shortcodes with sensible defaults. Choose currency format, decimals, millions/full scale, and live auto‑refresh.</p>
+      </div>
+      <div class="card">
+        <h3>Sumber data nyata</h3>
+        <p>Price from CoinGecko (Binance fallback). Implied volatility from Deribit with blended HV estimate when IV is unavailable.</p>
+      </div>
+      <div class="card">
+        <h3>Yield yang praktis</h3>
+        <p>Compute YTD/QTD, <code>annual</code> (Jan→Dec), <code>annual_ytd</code> (Jan→today), and <code>annual_locked</code> (Dec 31 of chosen year → today).</p>
+      </div>
+      <div class="card">
+        <h3>Update Bar</h3>
+        <p>Timezone‑aware “Updated Xm ago” text with data‑source labels. Works anywhere you put a live widget.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <h2 class="section-title">Tangkapan Layar Plugin</h2>
+    <p class="muted center">Klik gambar untuk memperbesar.</p>
+    <div class="grid gallery">
+      <!-- Thumbnails are auto-generated below by JS if you prefer; here we inline for GH Pages simplicity -->
+      <!-- Replace/add images inside assets/img/ and duplicate a figure below with the same pattern -->
+      <figure class="shot"><img src="assets/img/screenshot-1.png" alt="Metrics grid" loading="lazy"><figcaption>Metrics Grid Example</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-2.png" alt="Editor blocks layout" loading="lazy"><figcaption>Editor Blocks Layout</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-3.png" alt="General settings" loading="lazy"><figcaption>General Settings</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-4.png" alt="Data status" loading="lazy"><figcaption>Data Status</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-5.png" alt="Holdings and baseline" loading="lazy"><figcaption>Holdings &amp; Baseline</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-6.png" alt="Yield quick shortcodes" loading="lazy"><figcaption>Yield Shortcode Cepat</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-7.png" alt="Volatility shortcodes" loading="lazy"><figcaption>Volatility Shortcodes</figcaption></figure>
+      <figure class="shot"><img src="assets/img/screenshot-8.png" alt="Update bar shortcodes" loading="lazy"><figcaption>Update Bar Shortcodes</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- SHORTCODES -->
+  <section id="shortcodes" class="section">
+    <h2 class="section-title">Shortcode Cepat</h2>
+    <div class="grid two">
+      <div class="card code">
+        <h3>Price &amp; NAV</h3>
+<pre><code>[sbm_tracker metric="price"]
+[sbm_tracker metric="nav" scale="millions"]</code></pre>
+      </div>
+      <div class="card code">
+        <h3>Gains</h3>
+<pre><code>[sbm_tracker metric="gain_btc" type="baseline"]
+[sbm_tracker metric="gain_usd" type="ytd" scale="full"]</code></pre>
+      </div>
+      <div class="card code">
+        <h3>Yield</h3>
+<pre><code>[sbm_tracker metric="yield" type="ytd"]
+[sbm_tracker metric="yield" type="annual" year="2024"]
+[sbm_tracker metric="yield" type="annual_locked" year="2024"]
+[sbm_tracker metric="yield" type="annual_ytd" year="2024"]</code></pre>
+      </div>
+      <div class="card code">
+        <h3>Volatility &amp; Update Bar</h3>
+<pre><code>[sbm_tracker metric="histvol" window="30"]
+[sbm_tracker metric="implvol"]
+[sbm_update_bar style="full" tz="Asia/Jakarta"]</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section id="install" class="section">
+    <h2 class="section-title">Instalasi</h2>
+    <ol class="steps">
+      <li>Download the latest release from <a href="https://github.com/massatianagara/satia-btc-metrics" target="_blank" rel="noopener">GitHub</a>.</li>
+      <li>In WordPress: <strong>Plugins → Add New → Upload Plugin</strong>. Upload the ZIP and activate.</li>
+      <li>Open <strong>BTC Metrics → Settings</strong> to set currency, decimals, timezone, holdings, and baseline.</li>
+      <li>Insert shortcodes in any post, page, or block (supports classic &amp; block editor).</li>
+    </ol>
+  </section>
+
+  <!-- DONATE -->
+  <section id="donate" class="section">
+    <h2 class="section-title">Suka? Bantu fitur baru ☕️</h2>
+    <p class="center"><a class="btn" href="https://sociabuzz.com/massatianagara/donate" target="_blank" rel="noopener">Donasi via Sociabuzz</a></p>
+  </section>
+
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <h2 class="section-title">FAQ</h2>
+    <div class="grid two">
+      <div class="card">
+        <h3>Theme compatibility</h3>
+        <p>Output is <strong>text-only</strong> so it inherits your theme or page builder styling. No CSS lock-in.</p>
+      </div>
+      <div class="card">
+        <h3>Data sources</h3>
+        <p>Price: CoinGecko (Binance fallback). IV: Deribit. HV uses daily log returns with a blended fallback when IV is unavailable.</p>
+      </div>
+      <div class="card">
+        <h3>Yield types</h3>
+        <p>YTD, QTD, <code>annual</code>, <code>annual_ytd</code>, and <code>annual_locked</code> (choose the year).</p>
+      </div>
+      <div class="card">
+        <h3>Instalasiation</h3>
+        <p>Download the ZIP from GitHub, upload via <em>Plugins → Add New → Upload Plugin</em>, then activate.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="y"></span> Satia. Built for the Bitcoin‑first web. • <a href="https://github.com/massatianagara/btc-metrics" target="_blank" rel="noopener">This site on GitHub Pages</a></p>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lb" class="lightbox" aria-hidden="true">
+    <button class="close" aria-label="Close (Esc)">&times;</button>
+    <img class="lb-img" alt="" />
+    <div class="lb-cap"></div>
+    <button class="nav prev" aria-label="Previous">‹</button>
+    <button class="nav next" aria-label="Next">›</button>
+  </div>
+
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/ui.js"></script>
+</body>
+</html>

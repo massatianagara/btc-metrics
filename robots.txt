@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://massatianagara.github.io/btc-metrics/sitemap.xml
