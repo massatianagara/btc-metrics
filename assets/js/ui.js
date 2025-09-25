@@ -23,3 +23,53 @@
     update();
   }
 })();
+// README expand/collapse with smooth height animation
+(function(){
+  const btn = document.getElementById('readmeMore');
+  const wrap = document.getElementById('readmeWrap');
+  if (!btn || !wrap) return;
+
+  const isID = document.documentElement.lang === 'id';
+  const lblMore = isID ? 'Lihat selengkapnya' : 'Show more';
+  const lblLess = isID ? 'Sembunyikan' : 'Show less';
+
+  // enable transition on height
+  wrap.classList.add('readme-anim');
+
+  function setBtn(){
+    btn.textContent = wrap.classList.contains('clamp') ? lblMore : lblLess;
+  }
+
+  function expand(){
+    const start = wrap.getBoundingClientRect().height;      // current (clamped)
+    wrap.classList.remove('clamp');                         // un-clamp to measure full
+    const end = wrap.getBoundingClientRect().height;        // full height
+    wrap.style.height = start + 'px';
+    requestAnimationFrame(()=> { wrap.style.height = end + 'px'; });
+    wrap.addEventListener('transitionend', function done(){
+      wrap.style.height = '';                               // clean inline height
+      wrap.removeEventListener('transitionend', done);
+    });
+  }
+
+  function collapse(){
+    const start = wrap.getBoundingClientRect().height;      // full height
+    wrap.style.height = start + 'px';
+    requestAnimationFrame(()=>{
+      wrap.classList.add('clamp');                          // apply clamp
+      const end = wrap.getBoundingClientRect().height;      // target clamped height
+      wrap.style.height = end + 'px';
+    });
+    wrap.addEventListener('transitionend', function done(){
+      wrap.style.height = '';
+      wrap.removeEventListener('transitionend', done);
+    });
+  }
+
+  btn.addEventListener('click', ()=>{
+    if (wrap.classList.contains('clamp')) expand(); else collapse();
+    setBtn();
+  });
+
+  setBtn();
+})();

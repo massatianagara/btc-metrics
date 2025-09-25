@@ -72,3 +72,23 @@ html{scroll-behavior:smooth}
 .readme.card.clamp{max-height:360px;overflow:hidden;position:relative}
 .readme.card.clamp:after{content:"";position:absolute;left:0;right:0;bottom:0;height:100px;background:linear-gradient(180deg, rgba(20,20,24,0), rgba(20,20,24,0.96))}
 .readme-controls{margin-top:10px}.readme-controls .btn{padding:8px 12px;border-radius:10px}
+/* --- Animations: Lightbox & README --- */
+@keyframes lb-pop { from { transform: scale(.975); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+@keyframes lb-swap-left { from { transform: translateX(24px); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
+@keyframes lb-swap-right { from { transform: translateX(-24px); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
+
+.lightbox { opacity: 0; transition: opacity .22s ease }
+.lightbox.open { opacity: 1 }
+.lb-img.anim-pop { animation: lb-pop .22s ease }
+.lb-img.swap-left { animation: lb-swap-left .22s ease }
+.lb-img.swap-right { animation: lb-swap-right .22s ease }
+
+/* README height animation */
+.readme-anim { transition: height .28s ease, max-height .28s ease }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { transition: none }
+  .lb-img, .lb-img.anim-pop, .lb-img.swap-left, .lb-img.swap-right { animation: none }
+  .readme-anim { transition: none }
+}
